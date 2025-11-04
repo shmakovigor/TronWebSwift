@@ -18,6 +18,9 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
          .package(url: "https://github.com/attaswift/BigInt.git", .upToNextMinor(from: "5.4.0")),
+         // SwiftProtobuf: Declared here so package can compile, but SPM will resolve to the same
+         // version used by the consuming app to avoid duplicate linkage
+         .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.26.0"),
          .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", from: "1.4.2"),
          .package(url: "https://github.com/Boilertalk/secp256k1.swift.git", from: "0.1.0")
     ],
@@ -28,8 +31,7 @@ let package = Package(
             name: "TronWebSwift",
             dependencies: [
                 "BigInt",
-                // SwiftProtobuf must be provided by the consuming app to avoid duplicate linkage
-                // It should come from another framework dependency to prevent embedding
+                .product(name: "SwiftProtobuf", package: "swift-protobuf"),
                 "CryptoSwift",
                 .product(name: "secp256k1", package: "secp256k1.swift")
             ]
