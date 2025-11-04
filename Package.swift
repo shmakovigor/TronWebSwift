@@ -17,7 +17,6 @@ let package = Package(
     ],
     dependencies: [
          .package(url: "https://github.com/attaswift/BigInt.git", .upToNextMinor(from: "5.4.0")),
-         .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.26.0"),
          .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", from: "1.4.2"),
          .package(url: "https://github.com/Boilertalk/secp256k1.swift.git", from: "0.1.0")
     ],
@@ -26,7 +25,9 @@ let package = Package(
             name: "TronWebSwift",
             dependencies: [
                 "BigInt",
-                .product(name: "SwiftProtobuf", package: "swift-protobuf"),
+                // SwiftProtobuf should be provided by WalletCoreSwiftProtobuf when used with WalletCore
+                // If using TronWebSwift standalone, add: .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.26.0")
+                // and include: .product(name: "SwiftProtobuf", package: "swift-protobuf") in dependencies
                 "CryptoSwift",
                 .product(name: "secp256k1", package: "secp256k1.swift")
             ]

@@ -16,6 +16,28 @@ Swift API Library for interacting with the TRON Network
     pod 'TronWebSwift', :git=>'https://github.com/fish-yan/TronWebSwift.git'
 ```
 
+### Using with WalletCore
+
+When using `TronWebSwift` alongside `WalletCore` (which includes `WalletCoreSwiftProtobuf`), `TronWebSwift` will automatically use `WalletCoreSwiftProtobuf` for SwiftProtobuf, avoiding duplicate class errors.
+
+**Note:** If you're using `TronWebSwift` standalone (without WalletCore), you'll need to add SwiftProtobuf as a dependency in your `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.26.0"),
+    // ... other dependencies
+],
+targets: [
+    .target(
+        name: "YourTarget",
+        dependencies: [
+            .product(name: "SwiftProtobuf", package: "swift-protobuf"),
+            // ... other dependencies
+        ]
+    )
+]
+```
+
 ## Usage
 
 ### Generate Account
