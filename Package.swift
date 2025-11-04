@@ -28,7 +28,8 @@ let package = Package(
             name: "TronWebSwift",
             dependencies: [
                 "BigInt",
-                .product(name: "SwiftProtobuf", package: "swift-protobuf"),
+                // SwiftProtobuf must be provided by the consuming app to avoid duplicate linkage
+                // It should come from another framework dependency to prevent embedding
                 "CryptoSwift",
                 .product(name: "secp256k1", package: "secp256k1.swift")
             ]
