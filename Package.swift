@@ -11,8 +11,9 @@ let package = Package(
     products: [
         .library(
             name: "TronWebSwift",
+            type: .static,
             targets: ["TronWebSwift"]
-            ),
+        ),
     ],
     dependencies: [
          .package(url: "https://github.com/attaswift/BigInt.git", .upToNextMinor(from: "5.4.0")),
