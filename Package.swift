@@ -18,7 +18,6 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
          .package(url: "https://github.com/attaswift/BigInt.git", .upToNextMinor(from: "5.4.0")),
-         .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.26.0"),
          .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", from: "1.4.2"),
          .package(url: "https://github.com/Boilertalk/secp256k1.swift.git", from: "0.1.0")
     ],
