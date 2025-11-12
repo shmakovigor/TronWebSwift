@@ -146,4 +146,12 @@ extension TronWebHttpProvider {
         let providerURL = self.url.appending(.broadcastTransaction)
         return try await TronWebHttpProvider.POST(parameters, providerURL: providerURL, session: self.session)
     }
+    
+    public func getTransactionInfo(_ id: String) async throws -> TronTransactionInfo {
+        let parameters: [String: Encodable] = [
+            "value": id
+        ]
+        let providerURL = self.url.appending(.getTransactionInfo)
+        return try await TronWebHttpProvider.POST(parameters, providerURL: providerURL, session: self.session)
+    }
 }

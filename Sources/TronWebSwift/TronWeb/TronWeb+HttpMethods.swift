@@ -17,6 +17,7 @@ public enum TronWebRequestType: String {
     case triggerSmartContract
     case triggerConstantContract
     case broadcastTransaction
+    case getTransactionInfo
     
     var path: String {
         switch self {
@@ -38,6 +39,8 @@ public enum TronWebRequestType: String {
             return "/wallet/triggerconstantcontract"
         case .broadcastTransaction:
             return "/wallet/broadcasthex"
+        case .getTransactionInfo:
+            return "/walletsolidity/gettransactioninfobyid"
         }
     }
 }
@@ -102,6 +105,32 @@ public struct TronTransactionSendingResult: Decodable {
         case txid
         case transaction
     }
+}
+
+public struct TronTransactionInfo: Decodable {
+    public struct Receipt: Decodable {
+        public var result: String?
+        public var energyUsageTotal: Int64?
+        public var netUsage: Int64?
+        public var energyFee: Int64?
+        public var netFee: Int64?
+        public var energyPenaltyTotal: Int64?
+        
+        enum CodingKeys: String, CodingKey {
+            case result
+            case energyUsageTotal = "energy_usage_total"
+            case netUsage = "net_usage"
+            case energyFee = "energy_fee"
+            case netFee = "net_fee"
+            case energyPenaltyTotal = "energy_penalty_total"
+        }
+    }
+
+    public var id: String?
+    public var blockNumber: Int64?
+    public var blockTimeStamp: Int64?
+    public var contractResult: [String]?
+    public var receipt: Receipt?
 }
 
 public struct Protocol_Asset: Decodable {
