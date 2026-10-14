@@ -43,7 +43,7 @@ public struct TronAddress: CustomStringConvertible {
     
     public static func isValid(data: Data) -> Bool {
         guard data.count == 1 + TronAddress.size else { return false }
-        return data.bytes[0] == TronAddress.addressPrefix
+        return data.first == TronAddress.addressPrefix
     }
     
     public var description: String {
